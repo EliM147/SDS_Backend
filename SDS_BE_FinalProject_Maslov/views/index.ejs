@@ -1,0 +1,41 @@
+<%- include ("partials/header") %>
+  <h1>Add a Customer</h1>
+  <% if(errors != undefined){ %>
+    <ul>
+    <% errors.forEach(function(error){%>
+        <li><%= error.msg %> </li>
+    <% }) %>
+    </ul>
+  <% } %>
+
+  <form method="POST" action="/users/add">
+      <label>First Name</label><br>
+      <input type="text" name="first_name" required>
+      <br>
+      <label>Last Name</label><br>
+      <input type="text" name="last_name" required>
+      <br>
+      <label>e-mail</label><br>
+      <input type="email" name="email" required>
+      <br><br>
+      <input type="submit" value="Submit">
+  </form>
+  <h1><%= title %></h1>
+
+    <b><u>Total Number of Customers:</b></u> <br>
+    <h3><div id="includedContent"></div></h3>
+
+  <ol>
+  <%users.forEach(function(user){%>
+      <li>| <a href="#" class="deleteUser" data-id="<%= user._id %>">Delete</a> -
+      <b>ID:</b> <%= user._id %> | <b>First Name:</b> |
+        <%= user.first_name %> | <b>Last Name:</b>
+        <%= user.last_name %> | <b>Email:</b> <%= user.email %></li>
+
+  <% }) %>
+  </ol>
+  <h1>Go to Users API!</h1>
+  <a href="/api/users">API of USERS</a> <br>
+  <a href="/api/count">COUNT number of users in API</a>
+
+<%- include ("partials/footer") %>
